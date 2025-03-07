@@ -1,0 +1,51 @@
+/* 基础样式重置和全局设置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    padding: 20px;
+    background-color: #f0f2f5;
+    min-height: 100vh;
+}
+
+/* 基础排版样式 */
+h1 {
+    color: #1a1a1a;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* 基础表单元素样式 */
+textarea {
+    font-family: inherit;
+}
+
+button {
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+/* 响应式基础设置 */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}

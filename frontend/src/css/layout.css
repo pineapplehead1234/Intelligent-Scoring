@@ -1,0 +1,53 @@
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.page-title {
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #333;
+        font-size: 24px;
+    }
+
+    .similarity-score {
+        font-weight: bold;
+        padding: 4px 8px;
+        border-radius: 4px;
+    }
+
+    .similarity-score.high {
+        color: #52c41a;
+        background-color: rgba(82, 196, 26, 0.1);
+    }
+
+    .similarity-score.low {
+        color: #fa8c16;
+        background-color: rgba(250, 140, 22, 0.1);
+    }
+}
+
+.page-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: #1890ff;
+    border-radius: 3px;
+}
+
+/* 响应式布局调整 */
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        padding: 20px;
+    }
+}
