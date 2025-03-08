@@ -12,7 +12,7 @@
 首先，将项目克隆到本地：
 
 ```bash
-git clone [项目地址]
+git clone https://github.com/pineapplehead1234/Intelligent-Scoring
 cd teststt
 ```
 
@@ -35,6 +35,7 @@ pip install -r requirements.txt
 ```
 
 主要依赖包括：
+
 - Flask 3.0.2 - Web应用框架
 - Flask-CORS 4.0.0 - 处理跨域请求
 - Transformers 4.38.2 - Hugging Face转换器库
@@ -45,7 +46,8 @@ pip install -r requirements.txt
 ### 4. 环境变量配置
 
 项目使用了以下环境变量，已在代码中设置：
-- HF_ENDPOINT="https://hf-mirror.com" - Hugging Face模型镜像
+
+- HF_ENDPOINT="<https://hf-mirror.com>" - Hugging Face模型镜像
 - CUDA_VISIBLE_DEVICES="0" - GPU设备选择
 - TF_ENABLE_ONEDNN_OPTS="0" - TensorFlow优化选项
 
@@ -59,7 +61,7 @@ cd backend
 python api.py
 ```
 
-应用将在 http://localhost:5000 启动
+应用将在 <http://localhost:5000> 启动
 
 ## 注意事项
 
@@ -71,6 +73,7 @@ python api.py
 ## 常见问题
 
 1. 如果安装依赖时出现错误，可以尝试更新pip：
+
 ```bash
 python -m pip install --upgrade pip
 ```

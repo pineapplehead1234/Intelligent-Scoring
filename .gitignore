@@ -47,3 +47,9 @@ pip-delete-this-directory.txt
 dist/
 build/
 *.egg-info/
+
+# Python字节码缓存
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
