@@ -36,6 +36,8 @@ logs/
 # 依赖管理
 pip-log.txt
 pip-delete-this-directory.txt
+# requirements.txt不忽略，确保可以克隆依赖
+!requirements.txt
 
 # 测试音频文件
 *.wav
