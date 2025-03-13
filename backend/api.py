@@ -5,10 +5,15 @@ from werkzeug.utils import secure_filename
 from transformers import pipeline
 from sentence_transformers import SentenceTransformer
 import tempfile
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
 
 os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
+
+# 创建线程池
+pool = ThreadPoolExecutor(max_workers=5)
 
 app = Flask(__name__)
 CORS(app)
@@ -42,16 +47,26 @@ def process_files():
     files = request.files.getlist("files")
     standard_answer = request.form["standard_answer"]
 
-    transcripts = []
+    # 先保存所有文件
+    file_paths = []
+    file_names = []
     for file in files:
         filename = secure_filename(file.filename)
         filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
         file.save(filepath)
-        transcript = speech2text(filepath)
-        transcripts.append(transcript)
+        file_paths.append(filepath)
+        file_names.append(file.filename)
 
+    # 并行处理语音转文本
+    transcript_futures = [pool.submit(speech2text, filepath) for filepath in file_paths]
+    transcripts = [future.result() for future in as_completed(transcript_futures)]
+    
+    # 计算相似度
     scores = calculate_similarity(transcripts, standard_answer)
-    results = [{"filename": files[i].filename, "transcript": transcripts[i], "score": scores[i]} for i in range(len(files))]
+    
+    # 组织结果
+    results = [{"filename": file_names[i], "transcript": transcripts[i], "score": scores[i]} 
+               for i in range(len(file_names))]
 
     return jsonify(results)
 
@@ -62,5 +77,6 @@ def index():
 @app.route("/<path:path>")
 def serve_static(path):
     return send_from_directory("../frontend/src", path)
+
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
