@@ -90,11 +90,11 @@ def process_files():
 
 @app.route("/")
 def index():
-    return send_from_directory("../frontend/src", "index.html")
+    return send_from_directory("../frontend-new/dist", "index.html")
 
 @app.route("/<path:path>")
 def serve_static(path):
-    return send_from_directory("../frontend/src", path)
+    return send_from_directory("../frontend-new/dist", path)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

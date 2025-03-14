@@ -17,6 +17,7 @@
     font-size: 15px;
     transition: all 0.3s;
     background-color: #fff;
+    color: #000;
 }
 
 .standard-answer textarea:focus {
@@ -41,8 +42,8 @@
     background-color: #f0f7ff;
 }
 
-.file-upload__text {
-    color: #666;
+.file-upload p {
+    color: #000;
     font-size: 16px;
     margin: 0;
 }
@@ -150,6 +151,18 @@
     background-color: #d9d9d9;
     cursor: not-allowed;
     transform: none;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #ff4d4f;
+    cursor: pointer;
+    padding: 4px 8px;
+    font-size: 14px;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 @media (max-width: 768px) {
